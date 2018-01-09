@@ -18,7 +18,7 @@ def get_num_and_title(start):
             for name in title.findAll('td'):
                 print(name.string)
                 numAndTitle = name.string
-                file = open("TSA Songbook 2015.txt", 'a')
+                file = open("TSA2015SB.txt", 'a')
                 file.write(numAndTitle + "\n")
                 for thistitle in title.findAll('a'):
                     href = thistitle.get('href')
@@ -35,7 +35,7 @@ def get_song(url):
     text = source_code.text
     soup = BeautifulSoup(text, "html.parser")
 
-    file = open("TSA Songbook 2015.txt", 'a')
+    file = open("TSA2015SB.txt", 'a')
     for song in soup.findAll('font', {'face': 'Times New'}):  # Song
         link = song.text
         if link != "":
@@ -45,15 +45,13 @@ def get_song(url):
 
     for extra in soup.findAll('i'):  # Category and Author
         file.write("\n" + extra.text)
-    for tunes in soup.findAll('td', {'width': '510'}):  # Tune(s) and the Meter
-        file.write("\n\n" + tunes.text)
 
-    file.write("\n.......\n")
+    file.write("\n\n\n.......\n")
     file.close()
 
 
 if __name__ == "__main__":
-    get_num_and_title(616)
+    get_num_and_title(1)
 
 
 
